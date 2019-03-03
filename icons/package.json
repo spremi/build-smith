@@ -4,6 +4,7 @@
   "description": "Icons for BuildSmith",
   "main": "index.js",
   "scripts": {
+    "opt": "./node_modules/svgo/bin/svgo -f src/ -o out",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
