@@ -1,0 +1,26 @@
+{
+  "name": "build-smith-icons",
+  "version": "0.0.1",
+  "description": "Icons for BuildSmith",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:spremi/build-smith.git"
+  },
+  "keywords": [
+    "build",
+    "icons",
+    "buildsmith",
+    "build-smith"
+  ],
+  "author": "Sanjeev Premi",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/spremi/build-smith/issues"
+  },
+  "homepage": "https://github.com/spremi/build-smith#readme",
+  "private": true
+}
