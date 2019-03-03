@@ -22,5 +22,8 @@
     "url": "https://github.com/spremi/build-smith/issues"
   },
   "homepage": "https://github.com/spremi/build-smith#readme",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "svgo": "^1.2.0"
+  }
 }
