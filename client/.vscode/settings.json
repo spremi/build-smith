@@ -1,0 +1,10 @@
+{
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+  },
+  "[html]": {
+    "editor.formatOnSave": false,
+    "editor.formatOnPaste": false
+  }
+}
