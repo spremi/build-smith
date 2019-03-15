@@ -21,6 +21,7 @@ import { LoginComponent } from './routes/login/login.component';
 import { LogoutComponent } from './routes/logout/logout.component';
 import { ProjectInfoComponent } from './routes/project-info/project-info.component';
 import { ProjectListComponent } from './routes/project-list/project-list.component';
+import { RemoteInfoComponent } from './routes/remote-info/remote-info.component';
 import { RemoteListComponent } from './routes/remote-list/remote-list.component';
 import { StrayComponent } from './routes/stray/stray.component';
 
@@ -36,6 +37,7 @@ import { StrayComponent } from './routes/stray/stray.component';
     ProjectListComponent,
     ProjectInfoComponent,
     RemoteListComponent,
+    RemoteInfoComponent,
   ],
   imports: [
     BrowserModule,
