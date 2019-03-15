@@ -21,6 +21,7 @@ import { LoginComponent } from './routes/login/login.component';
 import { LogoutComponent } from './routes/logout/logout.component';
 import { ProjectInfoComponent } from './routes/project-info/project-info.component';
 import { ProjectListComponent } from './routes/project-list/project-list.component';
+import { RemoteListComponent } from './routes/remote-list/remote-list.component';
 import { StrayComponent } from './routes/stray/stray.component';
 
 @NgModule({
@@ -34,6 +35,7 @@ import { StrayComponent } from './routes/stray/stray.component';
     StrayComponent,
     ProjectListComponent,
     ProjectInfoComponent,
+    RemoteListComponent,
   ],
   imports: [
     BrowserModule,
