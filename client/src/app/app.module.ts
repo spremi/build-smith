@@ -19,6 +19,7 @@ import { ConfigComponent } from './routes/config/config.component';
 import { HomeComponent } from './routes/home/home.component';
 import { LoginComponent } from './routes/login/login.component';
 import { LogoutComponent } from './routes/logout/logout.component';
+import { ProjectInfoComponent } from './routes/project-info/project-info.component';
 import { ProjectListComponent } from './routes/project-list/project-list.component';
 import { StrayComponent } from './routes/stray/stray.component';
 
@@ -32,6 +33,7 @@ import { StrayComponent } from './routes/stray/stray.component';
     ConfigComponent,
     StrayComponent,
     ProjectListComponent,
+    ProjectInfoComponent,
   ],
   imports: [
     BrowserModule,
