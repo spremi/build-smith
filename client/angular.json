@@ -137,5 +137,8 @@
       }
     }
   },
-  "defaultProject": "build-smith-client"
+  "defaultProject": "build-smith-client",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
