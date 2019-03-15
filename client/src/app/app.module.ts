@@ -19,6 +19,7 @@ import { ConfigComponent } from './routes/config/config.component';
 import { HomeComponent } from './routes/home/home.component';
 import { LoginComponent } from './routes/login/login.component';
 import { LogoutComponent } from './routes/logout/logout.component';
+import { StrayComponent } from './routes/stray/stray.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { LogoutComponent } from './routes/logout/logout.component';
     LoginComponent,
     LogoutComponent,
     ConfigComponent,
+    StrayComponent,
   ],
   imports: [
     BrowserModule,
