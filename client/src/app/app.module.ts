@@ -19,6 +19,7 @@ import { ConfigComponent } from './routes/config/config.component';
 import { HomeComponent } from './routes/home/home.component';
 import { LoginComponent } from './routes/login/login.component';
 import { LogoutComponent } from './routes/logout/logout.component';
+import { ProjectListComponent } from './routes/project-list/project-list.component';
 import { StrayComponent } from './routes/stray/stray.component';
 
 @NgModule({
@@ -30,6 +31,7 @@ import { StrayComponent } from './routes/stray/stray.component';
     LogoutComponent,
     ConfigComponent,
     StrayComponent,
+    ProjectListComponent,
   ],
   imports: [
     BrowserModule,
