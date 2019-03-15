@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './routes/about/about.component';
+import { BuildInfoComponent } from './routes/build-info/build-info.component';
 import { BuildListComponent } from './routes/build-list/build-list.component';
 import { ConfigComponent } from './routes/config/config.component';
 import { HomeComponent } from './routes/home/home.component';
@@ -44,6 +45,7 @@ import { UserListComponent } from './routes/user-list/user-list.component';
     UserListComponent,
     UserInfoComponent,
     BuildListComponent,
+    BuildInfoComponent,
   ],
   imports: [
     BrowserModule,
