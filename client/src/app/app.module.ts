@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MaterialModule } from './modules/material/material.module';
 import { AboutComponent } from './routes/about/about.component';
 import { AdminComponent } from './routes/admin/admin.component';
 import { BuildInfoComponent } from './routes/build-info/build-info.component';
@@ -56,6 +57,7 @@ import { UserListComponent } from './routes/user-list/user-list.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
