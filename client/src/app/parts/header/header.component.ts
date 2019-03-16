@@ -14,6 +14,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.sass'],
 })
 export class HeaderComponent implements OnInit {
+  /**
+   * Is user logged in?
+   */
+  validUser = false;
 
   constructor() { }
 

@@ -1,3 +1,32 @@
-<p>
-  header works!
-</p>
+<mat-toolbar color="primary">
+  <button mat-icon-button routerLink="/">
+    <mat-icon class="mat-24" svgIcon="logo_color" aria-label="Home"></mat-icon>
+  </button>
+
+  <span class="h-title">BuildSMITH</span>
+
+  <span class="h-spacer"></span>
+
+  <button mat-icon-button *ngIf="validUser" [matMenuTriggerFor]="userMenu">
+    <mat-icon class="mat-24" svgIcon="verified_user" aria-label="Verified user"></mat-icon>
+  </button>
+
+  <mat-menu #userMenu="matMenu">
+    <button mat-menu-item>User Name</button>
+    <mat-divider></mat-divider>
+
+    <button mat-menu-item routerLink="/config">
+      <mat-icon class="mat-24" svgIcon="settings" aria-label="Settings"></mat-icon>
+      <span>Settings</span>
+    </button>
+
+    <button mat-menu-item routerLink="/logout">
+      <mat-icon class="mat-24" svgIcon="block" aria-label="logout"></mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+
+  <button *ngIf="!validUser" mat-icon-button routerLink="/login" routerLinkActive="active">
+    <mat-icon class="mat-24" svgIcon="person" aria-label="Login"></mat-icon>
+  </button>
+</mat-toolbar>
