@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { IconService } from './modules/material/icon.service';
 import { MaterialModule } from './modules/material/material.module';
 import { AboutComponent } from './routes/about/about.component';
 import { AdminComponent } from './routes/admin/admin.component';
@@ -62,4 +63,8 @@ import { UserListComponent } from './routes/user-list/user-list.component';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private iconSvc: IconService) {
+    iconSvc.register();
+  }
+}
