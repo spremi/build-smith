@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IconService } from './modules/material/icon.service';
 import { MaterialModule } from './modules/material/material.module';
+import { BodyComponent } from './parts/body/body.component';
 import { FooterComponent } from './parts/footer/footer.component';
 import { HeaderComponent } from './parts/header/header.component';
 import { AboutComponent } from './routes/about/about.component';
@@ -54,6 +55,7 @@ import { UserListComponent } from './routes/user-list/user-list.component';
     AdminComponent,
     HeaderComponent,
     FooterComponent,
+    BodyComponent,
   ],
   imports: [
     BrowserModule,
