@@ -257,3 +257,24 @@ export const StateIcons: IconSet = {
     },
   ],
 };
+
+/**
+ * List of user status icons.
+ */
+export const UserStatusIcons: IconSet = {
+  path: '/assets/icons/user/',
+  list: [
+    {
+      icon: 'user_active',
+      file: 'user-active.svg',
+    },
+    {
+      icon: 'user_inactive',
+      file: 'user-inactive.svg',
+    },
+    {
+      icon: 'user_retired',
+      file: 'user-retired.svg',
+    },
+  ],
+};

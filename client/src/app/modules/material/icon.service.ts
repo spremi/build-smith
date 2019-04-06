@@ -12,7 +12,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import { IconInfo, IconSet } from './icon-set';
 import {
-  AccessIcons, AppIcons, HealthIcons, Logo, StateIcons, StatusIcons
+  AccessIcons, AppIcons, HealthIcons, Logo, StateIcons, StatusIcons, UserStatusIcons
 } from './icon.list';
 
 @Injectable({
@@ -31,6 +31,7 @@ export class IconService {
     this.registerSet(StatusIcons);
     this.registerSet(StateIcons);
     this.registerSet(HealthIcons);
+    this.registerSet(UserStatusIcons);
   }
 
   /**
