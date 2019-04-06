@@ -7,6 +7,8 @@
 //
 
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sp-login',
@@ -15,9 +17,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  loginForm = this.fb.group({
+    user: ['', Validators.required],
+    pass: ['', Validators.required],
+  });
+
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
   }
 
+  onCancel() {
+    this.router.navigate(['/']);
+  }
+
+  onlogin() {
+  }
 }
