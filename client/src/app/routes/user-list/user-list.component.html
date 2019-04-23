@@ -25,7 +25,9 @@
 
     <ng-container matColumnDef="status">
       <th mat-header-cell class="status" mat-sort-header *matHeaderCellDef>Status</th>
-      <td mat-cell class="status" *matCellDef="let user">{{user.status | userStatus}}</td>
+      <td mat-cell class="status" *matCellDef="let user">
+        <sp-user-status [arg]="user.status" as="icon,tooltip"></sp-user-status>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="uname">
@@ -40,7 +42,9 @@
 
     <ng-container matColumnDef="role">
       <th mat-header-cell class="role" mat-sort-header *matHeaderCellDef>Role</th>
-      <td mat-cell class="name" *matCellDef="let user">{{user.role | userRole}}</td>
+      <td mat-cell class="name" *matCellDef="let user">
+        <sp-user-role [arg]="user.role" as="icon,tooltip"></sp-user-role>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="action">
