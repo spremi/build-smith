@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from 'src/app/modules/material/material.module';
+import { BuildStatusComponent } from 'src/app/parts/build-status/build-status.component';
 import { BuildListComponent } from './build-list.component';
 
 describe('BuildListComponent', () => {
@@ -27,7 +28,7 @@ describe('BuildListComponent', () => {
         ReactiveFormsModule,
         MaterialModule,
       ],
-      declarations: [BuildListComponent],
+      declarations: [BuildListComponent, BuildStatusComponent],
     })
       .compileComponents();
   }));

@@ -31,11 +31,7 @@
     <ng-container matColumnDef="status">
       <th mat-header-cell class="status" mat-sort-header *matHeaderCellDef>Status</th>
       <td mat-cell class="status" *matCellDef="let build">
-        <span class="cdk-visually-hidden">{{build.status | lowercase}}</span>
-        <mat-icon class="mat-24"
-          [ngClass]="'status-' + build.status"
-          [svgIcon]="'status_' + build.status"
-        ></mat-icon>
+        <sp-build-status [arg]="build.status" as="icon,tooltip"></sp-build-status>
       </td>
     </ng-container>
 
