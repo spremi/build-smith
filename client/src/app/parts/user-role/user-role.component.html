@@ -1,3 +1,23 @@
-<p>
-  user-role works!
-</p>
+<ng-container *ngIf="role">
+    <ng-container *ngIf="asIcon">
+      <ng-container *ngIf="withTooltip; then yTooltip; else nTooltip"></ng-container>
+
+      <ng-template #yTooltip>
+        <mat-icon class="mat-24"
+          [ngClass]="iconClass"
+          [svgIcon]="iconName"
+          [matTooltip]="role | userRole"
+          matTooltipPosition="after"
+          ></mat-icon>
+      </ng-template>
+
+      <ng-template #nTooltip>
+        <mat-icon class="mat-24"
+          [ngClass]="iconClass"
+          [svgIcon]="iconName"
+          ></mat-icon>
+      </ng-template>
+    </ng-container>
+
+    <span *ngIf="asText">{{role | userRole}}</span>
+  </ng-container>

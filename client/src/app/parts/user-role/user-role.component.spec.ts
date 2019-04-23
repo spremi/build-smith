@@ -8,6 +8,9 @@
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from 'src/app/modules/material/material.module';
+import { UserRolePipe } from 'src/app/pipes/user-role.pipe';
 import { UserRoleComponent } from './user-role.component';
 
 describe('UserRoleComponent', () => {
@@ -16,7 +19,11 @@ describe('UserRoleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [UserRoleComponent],
+      imports: [
+        NoopAnimationsModule,
+        MaterialModule,
+      ],
+      declarations: [UserRoleComponent, UserRolePipe],
     })
       .compileComponents();
   }));
