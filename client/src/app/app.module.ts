@@ -21,6 +21,7 @@ import { MaterialModule } from './modules/material/material.module';
 import { BodyComponent } from './parts/body/body.component';
 import { FooterComponent } from './parts/footer/footer.component';
 import { HeaderComponent } from './parts/header/header.component';
+import { ProjectStateComponent } from './parts/project-state/project-state.component';
 import { UserRoleComponent } from './parts/user-role/user-role.component';
 import { UserStatusComponent } from './parts/user-status/user-status.component';
 import { CredScopePipe } from './pipes/cred-scope.pipe';
@@ -72,6 +73,7 @@ import { UserListComponent } from './routes/user-list/user-list.component';
     InertDirective,
     UserStatusComponent,
     UserRoleComponent,
+    ProjectStateComponent,
   ],
   imports: [
     BrowserModule,
