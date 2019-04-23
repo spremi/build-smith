@@ -7,14 +7,33 @@
 //
 
 import { Pipe, PipeTransform } from '@angular/core';
+import { UserStatus } from '../models/user';
 
 @Pipe({
   name: 'userStatus',
 })
 export class UserStatusPipe implements PipeTransform {
 
-  transform(value: any, args?: any): any {
-    return null;
-  }
+  transform(value: string): string {
+    let ret: string;
 
+    switch (value) {
+      case UserStatus.ACTIVE:
+        ret = 'ACTIVE';
+        break;
+
+      case UserStatus.INACTIVE:
+        ret = 'INACTIVE';
+        break;
+
+      case UserStatus.RETIRED:
+        ret = 'RETIRED';
+        break;
+
+      default:
+        ret = null;
+    }
+
+    return ret;
+  }
 }
