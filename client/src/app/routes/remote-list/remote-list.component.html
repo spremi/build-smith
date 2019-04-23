@@ -1,3 +1,65 @@
-<p>
-  remote-list works!
-</p>
+<mat-toolbar>
+  <button mat-icon-button class="back" routerLink="..">
+    <mat-icon class="mat-24"
+      svgIcon="arrow_back"
+      aria-label="Back"></mat-icon>
+  </button>
+  <span>List of remotes</span>
+
+  <span class="h-spacer"></span>
+
+  <button mat-flat-button routerLink="add" aria-label="Add new remote">
+    <mat-icon class="mat-24" svgIcon="add"></mat-icon>
+    <span>NEW</span>
+  </button>
+</mat-toolbar>
+
+<div class="flex-col">
+  <mat-form-field>
+    <input matInput
+      placeholder="Filter remotes"
+      (keyup)="applyFilter($event.target.value)">
+  </mat-form-field>
+
+  <table mat-table matSort
+    class="mat-elevation-z2"
+    [dataSource]="dataSource">
+
+    <ng-container matColumnDef="access">
+      <th mat-header-cell mat-sort-header class="access" *matHeaderCellDef>Tag</th>
+      <td mat-cell class="access" *matCellDef="let remote">
+        <span class="cdk-visually-hidden">{{remote.access}}</span>
+        <mat-icon class="mat-24" [ngClass]="'access-' + remote.access"
+          [svgIcon]="'access_' + remote.access"
+        ></mat-icon>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="hostIp">
+      <th mat-header-cell class="host-ip" mat-sort-header *matHeaderCellDef>Link</th>
+      <td mat-cell class="host-ip" *matCellDef="let remote">{{remote.hostIp}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="hostName">
+      <th mat-header-cell class="host-name" *matHeaderCellDef>Name</th>
+      <td mat-cell class="host-name" *matCellDef="let remote">{{remote.hostName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell class="action" *matHeaderCellDef></th>
+      <td mat-cell class="action" *matCellDef="let remote">
+        <button mat-icon-button
+          [routerLink]="'/remotes/' + remote.id"
+          aria-label="View remote details">
+          <mat-icon class="mat-24" svgIcon="arrow_forward"></mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayCols; sticky: true"></tr>
+
+    <tr mat-row class="remote"
+      *matRowDef="let row; columns: displayCols;"
+      (click)="onRowClick(row.id)"></tr>
+  </table>
+</div>
