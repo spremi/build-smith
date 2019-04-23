@@ -128,3 +128,12 @@ export const initCondition = (): Condition => ({
   comparison: StrComparison.EQ,
   case: true,
 });
+
+/**
+ * List of display options for components.
+ */
+export class DisplayOptions {
+  public static readonly TEXT = 'text';
+  public static readonly ICON = 'icon';
+  public static readonly TOOLTIP = 'tooltip';
+}
