@@ -19,6 +19,7 @@ import { InertDirective } from './dictums/inert/inert.directive';
 import { IconService } from './modules/material/icon.service';
 import { MaterialModule } from './modules/material/material.module';
 import { BodyComponent } from './parts/body/body.component';
+import { BuildStatusComponent } from './parts/build-status/build-status.component';
 import { FooterComponent } from './parts/footer/footer.component';
 import { HeaderComponent } from './parts/header/header.component';
 import { ProjectAccessComponent } from './parts/project-access/project-access.component';
@@ -78,6 +79,7 @@ import { UserListComponent } from './routes/user-list/user-list.component';
     ProjectStateComponent,
     ProjectAccessComponent,
     ProjectHealthComponent,
+    BuildStatusComponent,
   ],
   imports: [
     BrowserModule,
