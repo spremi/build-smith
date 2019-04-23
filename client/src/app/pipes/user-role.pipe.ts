@@ -7,14 +7,37 @@
 //
 
 import { Pipe, PipeTransform } from '@angular/core';
+import { UserRole } from '../models/user';
 
 @Pipe({
   name: 'userRole',
 })
 export class UserRolePipe implements PipeTransform {
 
-  transform(value: any, args?: any): any {
-    return null;
-  }
+  transform(value: string): string {
+    let ret: string;
 
+    switch (value) {
+      case UserRole.VIEWER:
+        ret = 'VIEWER';
+        break;
+
+      case UserRole.BUILDER:
+        ret = 'BUILDER';
+        break;
+
+      case UserRole.PROJADMIN:
+        ret = 'PROJECT ADMIN';
+        break;
+
+      case UserRole.SYSADMIN:
+        ret = 'SYSTEM ADMIN';
+        break;
+
+      default:
+        ret = null;
+    }
+
+    return ret;
+  }
 }
