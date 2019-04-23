@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HighlightDirective } from './dictums/highlight/highlight.directive';
+import { InertDirective } from './dictums/inert/inert.directive';
 import { IconService } from './modules/material/icon.service';
 import { MaterialModule } from './modules/material/material.module';
 import { BodyComponent } from './parts/body/body.component';
@@ -66,6 +67,7 @@ import { UserListComponent } from './routes/user-list/user-list.component';
     CredTypePipe,
     CredScopePipe,
     HighlightDirective,
+    InertDirective,
   ],
   imports: [
     BrowserModule,
