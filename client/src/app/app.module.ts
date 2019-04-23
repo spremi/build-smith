@@ -19,6 +19,7 @@ import { MaterialModule } from './modules/material/material.module';
 import { BodyComponent } from './parts/body/body.component';
 import { FooterComponent } from './parts/footer/footer.component';
 import { HeaderComponent } from './parts/header/header.component';
+import { CredScopePipe } from './pipes/cred-scope.pipe';
 import { CredTypePipe } from './pipes/cred-type.pipe';
 import { UserRolePipe } from './pipes/user-role.pipe';
 import { UserStatusPipe } from './pipes/user-status.pipe';
@@ -62,6 +63,7 @@ import { UserListComponent } from './routes/user-list/user-list.component';
     UserRolePipe,
     UserStatusPipe,
     CredTypePipe,
+    CredScopePipe,
   ],
   imports: [
     BrowserModule,
