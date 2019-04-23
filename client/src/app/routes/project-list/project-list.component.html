@@ -1,3 +1,96 @@
-<p>
-  project-list works!
-</p>
+<mat-toolbar>
+  <button mat-icon-button class="back" routerLink="..">
+    <mat-icon class="mat-24" svgIcon="arrow_back" aria-label="Back"></mat-icon>
+  </button>
+  <span>List of projects</span>
+
+  <span class="h-spacer"></span>
+
+  <button mat-flat-button routerLink="add" aria-label="Add new project">
+    <mat-icon class="mat-24" svgIcon="add"></mat-icon>
+    <span>NEW</span>
+  </button>
+</mat-toolbar>
+
+<div class="flex-col">
+  <mat-form-field>
+    <input matInput
+      placeholder="Filter projects"
+      (keyup)="applyFilter($event.target.value)">
+  </mat-form-field>
+
+  <table mat-table matSort
+    class="mat-elevation-z2"
+    [dataSource]="dataSource">
+
+    <ng-container matColumnDef="state">
+      <th mat-header-cell class="state" mat-sort-header *matHeaderCellDef>State</th>
+      <td mat-cell class="state" *matCellDef="let proj">
+        <span class="cdk-visually-hidden">{{proj.enabled ? 'enabled' : 'disabled'}}</span>
+        <mat-icon class="mat-24"
+          [ngClass]="proj.enabled ? 'state-enabled' : 'state-disabled'"
+          [svgIcon]="proj.enabled ? 'state_enabled' : 'state_disabled'"
+        ></mat-icon>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell class="name" mat-sort-header *matHeaderCellDef>Name</th>
+      <td mat-cell class="name" *matCellDef="let proj">{{proj.name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell class="status" mat-sort-header *matHeaderCellDef>Status</th>
+      <td mat-cell class="status" *matCellDef="let proj">
+        <span class="cdk-visually-hidden">{{proj.status | lowercase}}</span>
+        <mat-icon class="mat-24"
+          [ngClass]="'status-' + proj.status"
+          [svgIcon]="'status_' + proj.status"
+        ></mat-icon>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="health">
+      <th mat-header-cell mat-sort-header class="health" *matHeaderCellDef>Health</th>
+      <td mat-cell class="health" *matCellDef="let proj">
+        <span class="cdk-visually-hidden">{{proj.health | lowercase}}</span>
+        <mat-icon class="mat-24"
+          [ngClass]="'health-' + proj.health | lowercase"
+          [svgIcon]="'health_' + proj.health | lowercase"
+        ></mat-icon>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastSuccess">
+      <th mat-header-cell class="date" *matHeaderCellDef>Last Success</th>
+      <td mat-cell class="date" *matCellDef="let proj">{{proj.build.lastSuccess}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastFailure">
+      <th mat-header-cell class="date" *matHeaderCellDef>Last Failure</th>
+      <td mat-cell class="date" *matCellDef="let proj">{{proj.build.lastFailure}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastDuration">
+      <th mat-header-cell class="time" *matHeaderCellDef>Last Duration</th>
+      <td mat-cell class="time" *matCellDef="let proj">{{proj.build.lastDuration}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell class="action" *matHeaderCellDef></th>
+      <td mat-cell class="action" *matCellDef="let proj">
+        <button mat-icon-button
+          [routerLink]="'/projects/' + proj.id"
+          aria-label="View project details">
+          <mat-icon class="mat-24" svgIcon="arrow_forward"></mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayCols; sticky: true"></tr>
+    <tr mat-row class="user"
+      *matRowDef="let row; columns: displayCols;"
+      (click)="onRowClick(row.id)"
+    ></tr>
+  </table>
+</div>
