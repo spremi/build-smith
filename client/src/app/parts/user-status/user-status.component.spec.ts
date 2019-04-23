@@ -8,6 +8,9 @@
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from 'src/app/modules/material/material.module';
+import { UserStatusPipe } from 'src/app/pipes/user-status.pipe';
 import { UserStatusComponent } from './user-status.component';
 
 describe('UserStatusComponent', () => {
@@ -16,9 +19,13 @@ describe('UserStatusComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserStatusComponent ],
+      imports: [
+        NoopAnimationsModule,
+        MaterialModule,
+      ],
+      declarations: [UserStatusComponent, UserStatusPipe],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
