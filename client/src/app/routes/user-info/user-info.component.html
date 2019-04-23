@@ -1,3 +1,66 @@
-<p>
-  user-info works!
-</p>
+<form [formGroup]="userForm" (ngSubmit)="onSave()">
+  <mat-toolbar>
+    <button mat-icon-button class="back" routerLink="..">
+      <mat-icon class="mat-24" svgIcon="arrow_back" aria-label="Back"></mat-icon>
+    </button>
+
+    <span *ngIf="!isEditing">{{user.fullName}}</span>
+
+    <span class="h-spacer"></span>
+
+    <span *ngIf="!isEditing" class="user">{{user.userName}}</span>
+
+    <span class="h-spacer"></span>
+
+    <ng-container *ngIf="isEditing; then saveBlock else editBlock"></ng-container>
+
+    <ng-template #saveBlock>
+      <button mat-button type="button"
+        (click)="onDiscard()"
+        aria-label="Discard changes">
+        <span>DISCARD</span>
+      </button>
+
+      <button mat-button type="submit" color="accent"
+        aria-label="Save changes">
+        <span>SAVE</span>
+      </button>
+    </ng-template>
+
+    <ng-template #editBlock>
+      <button mat-button type="button"
+        (click)="isEditing = true;"
+        aria-label="Edit contents">
+        <span>EDIT</span>
+      </button>
+    </ng-template>
+  </mat-toolbar>
+
+  <div class="flex-col">
+    <mat-form-field *ngIf="isEditing">
+      <input matInput placeholder="User name" formControlName="userName">
+    </mat-form-field>
+
+    <mat-form-field *ngIf="isEditing">
+      <input matInput placeholder="Full name" formControlName="fullName">
+    </mat-form-field>
+
+    <mat-form-field [spInert]="!isEditing">
+      <mat-label>Role</mat-label>
+      <mat-select formControlName="role">
+        <mat-option *ngFor="let opt of RoleOpts" [value]="opt.value">
+          {{opt.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field [spInert]="!isEditing">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let opt of StatusOpts" [value]="opt.value">
+          {{opt.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</form>

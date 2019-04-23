@@ -11,8 +11,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from 'src/app/modules/material/material.module';
-import { UserRoleComponent } from 'src/app/parts/user-role/user-role.component';
-import { UserStatusComponent } from 'src/app/parts/user-status/user-status.component';
 import { UserRolePipe } from 'src/app/pipes/user-role.pipe';
 import { UserStatusPipe } from 'src/app/pipes/user-status.pipe';
 import { UserListComponent } from './user-list.component';
@@ -28,13 +26,7 @@ describe('UserListComponent', () => {
         NoopAnimationsModule,
         MaterialModule,
       ],
-      declarations: [
-        UserListComponent,
-        UserRoleComponent,
-        UserStatusComponent,
-        UserRolePipe,
-        UserStatusPipe,
-      ],
+      declarations: [UserListComponent, UserRolePipe, UserStatusPipe],
     })
       .compileComponents();
   }));

@@ -8,6 +8,11 @@
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { InertDirective } from 'src/app/dictums/inert/inert.directive';
+import { MaterialModule } from 'src/app/modules/material/material.module';
 import { UserInfoComponent } from './user-info.component';
 
 describe('UserInfoComponent', () => {
@@ -16,7 +21,14 @@ describe('UserInfoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [UserInfoComponent],
+      imports: [
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterTestingModule,
+        MaterialModule,
+      ],
+      declarations: [UserInfoComponent, InertDirective],
     })
       .compileComponents();
   }));
