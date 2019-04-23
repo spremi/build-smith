@@ -1,3 +1,63 @@
-<p>
-  user-list works!
-</p>
+<mat-toolbar>
+  <button mat-icon-button class="back" routerLink="..">
+    <mat-icon class="mat-24" svgIcon="arrow_back" aria-label="Back"></mat-icon>
+  </button>
+  <span>List of users</span>
+
+  <span class="h-spacer"></span>
+
+  <button mat-flat-button routerLink="add" aria-label="Add new user">
+    <mat-icon class="mat-24" svgIcon="add"></mat-icon>
+    <span>NEW</span>
+  </button>
+</mat-toolbar>
+
+<div class="flex-col">
+  <mat-form-field>
+    <input matInput
+      placeholder="Filter users"
+      (keyup)="applyFilter($event.target.value)">
+  </mat-form-field>
+
+  <table mat-table matSort
+    class="mat-elevation-z2"
+    [dataSource]="dataSource">
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell class="status" mat-sort-header *matHeaderCellDef>Status</th>
+      <td mat-cell class="status" *matCellDef="let user">{{user.status | userStatus}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="uname">
+      <th mat-header-cell class="name" mat-sort-header *matHeaderCellDef>Name</th>
+      <td mat-cell class="name" *matCellDef="let user">{{user.userName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="fname">
+      <th mat-header-cell class="name" mat-sort-header *matHeaderCellDef>Full Name</th>
+      <td mat-cell class="name" *matCellDef="let user">{{user.fullName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <th mat-header-cell class="role" mat-sort-header *matHeaderCellDef>Role</th>
+      <td mat-cell class="name" *matCellDef="let user">{{user.role | userRole}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell class="action" *matHeaderCellDef></th>
+      <td mat-cell class="action" *matCellDef="let user">
+        <button mat-icon-button
+          [routerLink]="user.id"
+          aria-label="View user details">
+          <mat-icon class="mat-24" svgIcon="arrow_forward"></mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayCols; sticky: true"></tr>
+
+    <tr mat-row class="user"
+      *matRowDef="let row; columns: displayCols;"
+      (click)="onRowClick(row.id)"></tr>
+  </table>
+</div>
