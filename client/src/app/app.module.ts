@@ -22,6 +22,7 @@ import { BodyComponent } from './parts/body/body.component';
 import { FooterComponent } from './parts/footer/footer.component';
 import { HeaderComponent } from './parts/header/header.component';
 import { ProjectAccessComponent } from './parts/project-access/project-access.component';
+import { ProjectHealthComponent } from './parts/project-health/project-health.component';
 import { ProjectStateComponent } from './parts/project-state/project-state.component';
 import { UserRoleComponent } from './parts/user-role/user-role.component';
 import { UserStatusComponent } from './parts/user-status/user-status.component';
@@ -76,6 +77,7 @@ import { UserListComponent } from './routes/user-list/user-list.component';
     UserRoleComponent,
     ProjectStateComponent,
     ProjectAccessComponent,
+    ProjectHealthComponent,
   ],
   imports: [
     BrowserModule,
