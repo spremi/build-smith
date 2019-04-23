@@ -1,3 +1,74 @@
-<p>
-  build-list works!
-</p>
+<mat-toolbar>
+  <button mat-icon-button class="back" routerLink="..">
+    <mat-icon class="mat-24"
+      svgIcon="arrow_back"
+      aria-label="Back"></mat-icon>
+  </button>
+
+  <span>List of builds</span>
+  <span class="h-spacer"></span>
+
+  <span>PROJECT NAME</span>
+  <span class="h-spacer"></span>
+</mat-toolbar>
+
+<div class="flex-col">
+  <mat-form-field>
+    <input matInput
+      placeholder="Filter builds"
+      (keyup)="applyFilter($event.target.value)">
+  </mat-form-field>
+
+  <table mat-table matSort
+    class="mat-elevation-z2"
+    [dataSource]="dataSource">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell class="id" *matHeaderCellDef>Build Id</th>
+      <td mat-cell class="id" *matCellDef="let build">{{build.id}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell class="status" mat-sort-header *matHeaderCellDef>Status</th>
+      <td mat-cell class="status" *matCellDef="let build">
+        <span class="cdk-visually-hidden">{{build.status | lowercase}}</span>
+        <mat-icon class="mat-24"
+          [ngClass]="'status-' + build.status"
+          [svgIcon]="'status_' + build.status"
+        ></mat-icon>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="trigger">
+      <th mat-header-cell class="trigger" mat-sort-header *matHeaderCellDef>Trigger</th>
+      <td mat-cell class="trigger" *matCellDef="let build">{{build.trigger | uppercase}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="start">
+      <th mat-header-cell class="date" *matHeaderCellDef>Last Success</th>
+      <td mat-cell class="date" *matCellDef="let build">{{build.startTime}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="end">
+      <th mat-header-cell class="date" *matHeaderCellDef>Last Failure</th>
+      <td mat-cell class="date" *matCellDef="let build">{{build.endTime}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell class="action" *matHeaderCellDef></th>
+      <td mat-cell class="action" *matCellDef="let build">
+        <button mat-icon-button
+          [routerLink]="build.id"
+          aria-label="View build details">
+          <mat-icon class="mat-24" svgIcon="arrow_forward"></mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayCols; sticky: true"></tr>
+
+    <tr mat-row class="build"
+      *matRowDef="let row; columns: displayCols;"
+      (click)="onRowClick(row.id)"></tr>
+  </table>
+</div>
