@@ -278,3 +278,28 @@ export const UserStatusIcons: IconSet = {
     },
   ],
 };
+
+/**
+ * List of user role icons.
+ */
+export const UserRoleIcons: IconSet = {
+  path: '/assets/icons/user/',
+  list: [
+    {
+      icon: 'role_viewer',
+      file: 'role-viewer.svg',
+    },
+    {
+      icon: 'role_builder',
+      file: 'role-builder.svg',
+    },
+    {
+      icon: 'role_proj_admin',
+      file: 'role-proj-admin.svg',
+    },
+    {
+      icon: 'role_sys_admin',
+      file: 'role-sys-admin.svg',
+    },
+  ],
+};
