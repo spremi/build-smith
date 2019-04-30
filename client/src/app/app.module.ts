@@ -12,6 +12,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HighlightDirective } from './dictums/highlight/highlight.directive';
@@ -47,6 +50,7 @@ import { RemoteListComponent } from './routes/remote-list/remote-list.component'
 import { StrayComponent } from './routes/stray/stray.component';
 import { UserInfoComponent } from './routes/user-info/user-info.component';
 import { UserListComponent } from './routes/user-list/user-list.component';
+import { metaReducers, reducers } from './store';
 
 @NgModule({
   declarations: [
@@ -91,6 +95,8 @@ import { UserListComponent } from './routes/user-list/user-list.component';
     ReactiveFormsModule,
     HttpClientModule,
     MaterialModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [],
   bootstrap: [AppComponent],
