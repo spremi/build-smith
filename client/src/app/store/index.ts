@@ -14,6 +14,7 @@ import {
   MetaReducer
 } from '@ngrx/store';
 import { environment } from '../../environments/environment';
+import * as fromAuth from './auth/auth.reducer';
 import * as fromBuild from './build/build.reducer';
 import * as fromProject from './project/project.reducer';
 import * as fromRemote from './remote/remote.reducer';
@@ -26,6 +27,7 @@ export interface State {
   project: fromProject.State;
   build: fromBuild.State;
   ui: fromUi.State;
+  auth: fromAuth.State;
 }
 
 export const reducers: ActionReducerMap<State> = {
@@ -34,6 +36,7 @@ export const reducers: ActionReducerMap<State> = {
   project: fromProject.reducer,
   build: fromBuild.reducer,
   ui: fromUi.reducer,
+  auth: fromAuth.reducer,
 };
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
