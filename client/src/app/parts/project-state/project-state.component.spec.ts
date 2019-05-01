@@ -8,6 +8,8 @@
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from 'src/app/modules/material/material.module';
 import { ProjectStateComponent } from './project-state.component';
 
 describe('ProjectStateComponent', () => {
@@ -16,6 +18,10 @@ describe('ProjectStateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        NoopAnimationsModule,
+        MaterialModule,
+      ],
       declarations: [ProjectStateComponent],
     })
       .compileComponents();
