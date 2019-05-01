@@ -16,36 +16,75 @@ export class TriggerType {
   /** On receiving web-hook. */
   public static readonly HOOK = 'H';
 
-  /** Periodically. */
-  public static readonly PERIODIC = 'P';
+  /** Per schedule. */
+  public static readonly SCHEDULE = 'S';
 
   /** After other project(s). */
   public static readonly AFTER = 'A';
 }
 
 /**
- * Describes a trigger.
+ * Describes attributes of hook trigger.
  */
-export interface Trigger {
-  /** Type of trigger */
-  type: TriggerType;
+export interface HookTrigger {
+  /** Token required to trigger builds. */
+  token: string;
+}
 
-  /** Hook identifier - if trigger type is 'HOOK'. */
-  hook: string;
-
-  /** Cron text defining schedule - if trigger type is 'PERIODIC'. */
+/**
+ * Describes attributes of schedule trigger.
+ */
+export interface ScheduleTrigger {
+  /** Cron text defining schedule. */
   cron: string;
+}
 
-  /** Project identifiers - if trigger type is 'AFTER'. */
+/**
+ * Describes attributes of 'after' trigger.
+ */
+export interface AfterTrigger {
+  /** List of project identifiers. */
   projects: string[];
+
+  /** Trigger, even if the build failed. */
+  onFailure: boolean;
+}
+
+/**
+ * Describes a set of triggers.
+ */
+export interface Triggers {
+  /** On user action? */
+  user: boolean;
+
+  /** On receiving web-hook? */
+  hook: boolean;
+
+  /** Attributes of HOOK trigger. */
+  hookAttrs: HookTrigger;
+
+  /** Per schedule? */
+  schedule: boolean;
+
+  /** Attributes of SCHEDULE trigger. */
+  schedAttrs: ScheduleTrigger;
+
+  /** After other project(s)? */
+  after: boolean;
+
+  /** Attributes of AFTER trigger. */
+  afterAttrs: AfterTrigger;
 }
 
 /**
  * Initializer for interface 'Trigger'.
  */
-export const initTrigger = (): Trigger => ({
-  type: null,
-  hook: null,
-  cron: null,
-  projects: null,
+export const initTriggers = (): Triggers => ({
+  user: false,
+  hook: false,
+  hookAttrs: null,
+  schedule: false,
+  schedAttrs: null,
+  after: false,
+  afterAttrs: null,
 });
