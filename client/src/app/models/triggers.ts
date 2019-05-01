@@ -36,8 +36,8 @@ export interface Trigger {
   /** Cron text defining schedule - if trigger type is 'PERIODIC'. */
   cron: string;
 
-  /** Project identifier - if trigger type is 'AFTER'. */
-  project: string;
+  /** Project identifiers - if trigger type is 'AFTER'. */
+  projects: string[];
 }
 
 /**
@@ -47,5 +47,5 @@ export const initTrigger = (): Trigger => ({
   type: null,
   hook: null,
   cron: null,
-  project: null,
+  projects: null,
 });
