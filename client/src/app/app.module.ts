@@ -24,6 +24,7 @@ import { CredentialsComponent } from './parts/credentials/credentials.component'
 import { FooterComponent } from './parts/footer/footer.component';
 import { FormEmailComponent } from './parts/form-email/form-email.component';
 import { FormProtocolsComponent } from './parts/form-protocols/form-protocols.component';
+import { FormScmComponent } from './parts/form-scm/form-scm.component';
 import { FormStepComponent } from './parts/form-step/form-step.component';
 import { FormTriggerComponent } from './parts/form-trigger/form-trigger.component';
 import { FormWorkspaceComponent } from './parts/form-workspace/form-workspace.component';
@@ -94,6 +95,7 @@ import { UserListComponent } from './routes/user-list/user-list.component';
     FormEmailComponent,
     FormStepComponent,
     FormWorkspaceComponent,
+    FormScmComponent,
   ],
   imports: [
     BrowserModule,
