@@ -22,6 +22,7 @@ import { BodyComponent } from './parts/body/body.component';
 import { BuildStatusComponent } from './parts/build-status/build-status.component';
 import { CredentialsComponent } from './parts/credentials/credentials.component';
 import { FooterComponent } from './parts/footer/footer.component';
+import { FormEmailComponent } from './parts/form-email/form-email.component';
 import { FormProtocolsComponent } from './parts/form-protocols/form-protocols.component';
 import { FormTriggerComponent } from './parts/form-trigger/form-trigger.component';
 import { HeaderComponent } from './parts/header/header.component';
@@ -88,6 +89,7 @@ import { UserListComponent } from './routes/user-list/user-list.component';
     ProjectStatusComponent,
     FormProtocolsComponent,
     FormTriggerComponent,
+    FormEmailComponent,
   ],
   imports: [
     BrowserModule,
