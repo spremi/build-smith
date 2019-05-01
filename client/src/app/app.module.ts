@@ -26,6 +26,7 @@ import { HeaderComponent } from './parts/header/header.component';
 import { ProjectAccessComponent } from './parts/project-access/project-access.component';
 import { ProjectHealthComponent } from './parts/project-health/project-health.component';
 import { ProjectStateComponent } from './parts/project-state/project-state.component';
+import { ProjectStatusComponent } from './parts/project-status/project-status.component';
 import { UserRoleComponent } from './parts/user-role/user-role.component';
 import { UserStatusComponent } from './parts/user-status/user-status.component';
 import { CredScopePipe } from './pipes/cred-scope.pipe';
@@ -82,6 +83,7 @@ import { UserListComponent } from './routes/user-list/user-list.component';
     ProjectHealthComponent,
     BuildStatusComponent,
     CredentialsComponent,
+    ProjectStatusComponent,
   ],
   imports: [
     BrowserModule,
