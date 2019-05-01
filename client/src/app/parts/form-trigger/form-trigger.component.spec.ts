@@ -8,6 +8,10 @@
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { InertDirective } from 'src/app/dictums/inert/inert.directive';
+import { MaterialModule } from 'src/app/modules/material/material.module';
 import { FormTriggerComponent } from './form-trigger.component';
 
 describe('FormTriggerComponent', () => {
@@ -16,7 +20,13 @@ describe('FormTriggerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FormTriggerComponent],
+      imports: [
+        NoopAnimationsModule,
+        MaterialModule,
+        FormsModule,
+        ReactiveFormsModule,
+      ],
+      declarations: [FormTriggerComponent, InertDirective],
     })
       .compileComponents();
   }));

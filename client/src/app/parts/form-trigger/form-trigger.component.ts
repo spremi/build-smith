@@ -6,7 +6,8 @@
 // Available under terms of the BSD-3-Clause license.
 //
 
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'sp-form-trigger',
@@ -15,9 +16,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormTriggerComponent implements OnInit {
 
-  constructor() { }
+  /**
+   * Form group for trigger.
+   */
+  triggerForm: FormGroup;
+
+  @Input() edit: boolean;
+
+  constructor(private fb: FormBuilder) {
+    this.triggerForm = this.createForm();
+  }
 
   ngOnInit() {
   }
 
+  /**
+   * Creates form group based on specified data
+   */
+  private createForm(): FormGroup {
+    return this.fb.group({
+      user: [false],
+      hook: [false],
+      hookToken: [''],
+      schedule: [false],
+      scheduleCron: [''],
+      after: [false],
+      afterProjects: [''],
+      afterFailure: [false],
+    });
+  }
 }
