@@ -33,8 +33,8 @@ export interface Trigger {
   /** Hook identifier - if trigger type is 'HOOK'. */
   hook: string;
 
-  /** Period (in minutes) - if trigger type is 'PERIODIC'. */
-  period: number;
+  /** Cron text defining schedule - if trigger type is 'PERIODIC'. */
+  cron: string;
 
   /** Project identifier - if trigger type is 'AFTER'. */
   project: string;
@@ -46,6 +46,6 @@ export interface Trigger {
 export const initTrigger = (): Trigger => ({
   type: null,
   hook: null,
-  period: null,
+  cron: null,
   project: null,
 });
