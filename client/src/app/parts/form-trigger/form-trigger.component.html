@@ -9,6 +9,9 @@
   <mat-form-field *ngIf="triggerForm.controls.schedule.value" class="sub-form">
     <input matInput placeholder="Schedule" formControlName="scheduleCron">
     <mat-hint>Use "cron" syntax</mat-hint>
+    <mat-error
+      *ngIf="triggerForm.controls.scheduleCron.hasError('errCron')"
+      >Cron text can't be empty.</mat-error>
   </mat-form-field>
 
   <mat-checkbox formControlName="hook">Trigger via web-hook</mat-checkbox>
@@ -16,6 +19,12 @@
   <mat-form-field *ngIf="triggerForm.controls.hook.value" class="sub-form">
     <input matInput placeholder="Authorization token" formControlName="hookToken">
     <mat-hint>Used to authenticate the build requests.</mat-hint>
+    <mat-error
+      *ngIf="triggerForm.controls.hookToken.hasError('errToken')"
+      >A token string is required.</mat-error>
+    <mat-error
+      *ngIf="triggerForm.controls.hookToken.hasError('errTokenLen')"
+      >Token must be at least 4 characters long.</mat-error>
   </mat-form-field>
 
   <mat-checkbox formControlName="after">After project(s)</mat-checkbox>
@@ -23,6 +32,9 @@
   <mat-form-field *ngIf="triggerForm.controls.after.value" class="sub-form">
     <input matInput placeholder="Projects" formControlName="afterProjects">
     <mat-hint>Comma separated list of projects</mat-hint>
+    <mat-error
+      *ngIf="triggerForm.controls.afterProjects.hasError('errProjects')"
+      >Project list can't be empty.</mat-error>
   </mat-form-field>
 
   <mat-checkbox *ngIf="triggerForm.controls.after.value" class="sub-form"

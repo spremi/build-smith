@@ -7,7 +7,10 @@
 //
 
 import { forwardRef, Component, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  AbstractControl, ControlValueAccessor, FormBuilder, FormGroup,
+  NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator,
+} from '@angular/forms';
 import { Triggers } from 'src/app/models/triggers';
 
 @Component({
@@ -20,9 +23,14 @@ import { Triggers } from 'src/app/models/triggers';
       useExisting: forwardRef(() => FormTriggerComponent),
       multi: true,
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => FormTriggerComponent),
+      multi: true,
+    },
   ],
 })
-export class FormTriggerComponent implements OnInit, ControlValueAccessor {
+export class FormTriggerComponent implements OnInit, ControlValueAccessor, Validator {
   /**
    * Form group for trigger.
    */
@@ -83,17 +91,98 @@ export class FormTriggerComponent implements OnInit, ControlValueAccessor {
   }
 
   /**
+   * Validates the form content.
+   */
+  validate(c: AbstractControl): ValidationErrors | null {
+
+    let err: { [key: string]: boolean };
+
+    const valUser = this.triggerForm.get(['user']);
+    const valHook = this.triggerForm.get(['hook']);
+    const valHookToken = this.triggerForm.get(['hookToken']);
+    const valSchedule = this.triggerForm.get('schedule');
+    const valScheduleCron = this.triggerForm.get('scheduleCron');
+    const valAfter = this.triggerForm.get('after');
+    const valAfterProjects = this.triggerForm.get('afterProjects');
+
+    //
+    // Atleast one of trigger mechanisms must be set.
+    //
+    if (!valUser.value &&
+      !valHook.value &&
+      !valSchedule.value &&
+      !valAfter.value) {
+      return { errTrigger: true };
+    }
+
+    //
+    // Trigger web-hook is selected & authorization token is modified.
+    //
+    if (valHook.value && !valHookToken.pristine) {
+      const token = (valHookToken.value as string).trim();
+
+      if (token.length === 0) {
+        err = { errToken: true };
+
+        valHookToken.setErrors(err);
+        return err;
+      } else {
+        if (token.length < 4) {
+          err = { errTokenLen: true };
+
+          valHookToken.setErrors(err);
+          return err;
+        }
+      }
+    }
+
+    //
+    // Trigger 'schedule' is selected & cron text is modified.
+    //
+    if (valSchedule.value && !valScheduleCron.pristine) {
+      const cron = (valScheduleCron.value as string).trim();
+
+      if (cron.length === 0) {
+        err = { errCron: true };
+
+        valScheduleCron.setErrors(err);
+        return err;
+      } else {
+        // TODO: Validate the cron string
+      }
+    }
+
+    //
+    // Trigger 'after' is selected & project list is modified.
+    //
+    if (valAfter.value && !valAfterProjects.pristine) {
+      const projects = (valAfterProjects.value as string).trim();
+
+      if (projects.length === 0) {
+        err = { errProjects: true };
+
+        valAfterProjects.setErrors(err);
+        return err;
+      } else {
+        // TODO: Validate the project names
+      }
+    }
+
+    return null;
+  }
+
+  /**
    * Creates form group based on specified data
    */
   private createForm(): FormGroup {
     return this.fb.group({
       user: [false],
       hook: [false],
-      hookToken: [''],
+      hookToken: ['', { updateOn: 'blur' }],
       schedule: [false],
-      scheduleCron: [''],
+      scheduleCron: ['', { updateOn: 'blur' }],
       after: [false],
-      afterProjects: [''],
+      afterProjects: ['', { updateOn: 'blur' }],
       afterFailure: [false],
     });
   }
