@@ -1,3 +1,81 @@
-<p>
-  project-info works!
-</p>
+<mat-toolbar>
+  <button mat-icon-button class="back"
+    routerLink=".."
+    aria-label="Back">
+    <mat-icon class="mat-24" svgIcon="arrow_back"></mat-icon>
+  </button>
+
+  <ng-container *ngIf="add; then newProj else curProj"></ng-container>
+
+  <ng-template #newProj>
+    <span>New Project</span>
+  </ng-template>
+
+  <ng-template #curProj>
+    <span>{{project.name}}</span>
+
+    <span class="h-spacer"></span>
+
+    <!-- TODO: Remove TEXT below -->
+    <sp-project-access [arg]="project.perms.access" as="text"></sp-project-access>&nbsp;
+    <sp-project-state [arg]="project.state" as="icon,tooltip"></sp-project-state>&nbsp;
+    <sp-project-health [arg]="project.health" as="icon,tooltip"></sp-project-health>
+  </ng-template>
+
+  <span class="h-spacer"></span>
+
+  <ng-container *ngIf="isEditing; then saveBlock else editBlock"></ng-container>
+
+  <ng-template #saveBlock>
+    <button mat-button type="button"
+      (click)="onDiscard()"
+      aria-label="Discard changes">
+      <span>DISCARD</span>
+    </button>
+
+    <button mat-button type="submit" color="accent"
+      (click)="onSave()"
+      [disabled]="projectForm.invalid"
+      aria-label="Save changes">
+      <span>SAVE</span>
+    </button>
+  </ng-template>
+
+  <ng-template #editBlock>
+    <button mat-button type="button"
+      (click)="isEditing = true"
+      aria-label="Edit project">
+      <span>EDIT</span>
+    </button>
+  </ng-template>
+</mat-toolbar>
+
+<form class="flex-col" [formGroup]="projectForm" (ngSubmit)="onSave()">
+  <mat-form-field *ngIf="isEditing">
+    <input matInput placeholder="Project name" formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field [spInert]="!isEditing">
+    <mat-label>Project description</mat-label>
+    <textarea matInput formControlName="desc"></textarea>
+  </mat-form-field>
+
+  <mat-tab-group mat-align-tabs="start" dynamicHeight>
+    <mat-tab label="SCM">
+      <sp-form-scm></sp-form-scm>
+    </mat-tab>
+    <mat-tab label="TRIGGERS">
+      <sp-form-trigger formControlName="triggers" [edit]="isEditing"></sp-form-trigger>
+    </mat-tab>
+    <mat-tab label="WORKSPACE">
+      <sp-form-workspace></sp-form-workspace>
+    </mat-tab>
+    <mat-tab label="STEPS">
+      <sp-form-step></sp-form-step>
+    </mat-tab>
+    <mat-tab label="NOTIFICATIONS">
+      <h3 class="mat-h3">EMAIL NOTIFICATIONS</h3>
+      <sp-form-email></sp-form-email>
+    </mat-tab>
+  </mat-tab-group>
+</form>
