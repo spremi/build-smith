@@ -78,6 +78,7 @@ export class ProjectInfoComponent implements OnInit {
         onFailure: false,
       },
     },
+    workspace: null,
   };
 
   /**

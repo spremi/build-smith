@@ -8,6 +8,7 @@
 
 import { ProjectRepo } from './repo';
 import { initTriggers, Triggers } from './triggers';
+import { initWorkspace, Workspace } from './workspace';
 
 /**
  * Access permissions of a project.
@@ -177,6 +178,9 @@ export interface Project extends ProjectBrief {
 
   /** Triggers. */
   triggers: Triggers;
+
+  /** Workspace. */
+  workspace: Workspace;
 }
 
 /**
@@ -187,4 +191,5 @@ export const initProject = (): Project => ({
   repos: [],
   perms: initProjectPermissions(),
   triggers: initTriggers(),
+  workspace: initWorkspace(),
 });
