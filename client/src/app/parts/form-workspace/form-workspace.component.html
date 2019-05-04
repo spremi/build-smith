@@ -1,3 +1,27 @@
-<p>
-  form-workspace works!
-</p>
+<div
+  [formGroup]="workspaceForm"
+  [spInert]="!edit">
+
+  <mat-form-field [spInert]="true">
+    <input matInput placeholder="Workspace Directory" formControlName="workspaceDir">
+    <mat-hint>Derived from system configuration.</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field [spInert]="true">
+    <input matInput placeholder="Build Directory" formControlName="buildDir">
+    <mat-hint>Contains all build for the project.</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field [spInert]="true">
+    <input matInput placeholder="Record Directory" formControlName="recordDir">
+    <mat-hint>Contains all build records for the project.</mat-hint>
+  </mat-form-field>
+
+  <mat-checkbox formControlName="cleanBefore">Clean before build?</mat-checkbox>
+
+  <mat-checkbox formControlName="cleanAfter">Clean after build?</mat-checkbox>
+
+  <mat-form-field>
+    <input matInput placeholder="Number of builds to keep" formControlName="buildCount">
+  </mat-form-field>
+</div>
