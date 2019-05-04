@@ -78,7 +78,14 @@ export class ProjectInfoComponent implements OnInit {
         onFailure: false,
       },
     },
-    workspace: null,
+    workspace: {
+      dir: '/some/path',
+      buildDir: '${WORKSPACE}/builds',
+      recordDir: '${WORKSPACE}/records',
+      cleanBefore: false,
+      cleanAfter: false,
+      buildCount: 0,
+    },
   };
 
   /**
@@ -131,6 +138,7 @@ export class ProjectInfoComponent implements OnInit {
       repos: cloneDeep(this.project.repos),
       perms: cloneDeep(this.project.perms),
       triggers: cloneDeep(this.project.triggers),
+      workspace: cloneDeep(this.project.workspace),
     });
 
     this.projectForm.markAsPristine();
@@ -154,6 +162,7 @@ export class ProjectInfoComponent implements OnInit {
       name: [this.project.name, Validators.required],
       desc: [this.project.desc],
       triggers: [this.project.triggers],
+      workspace: [this.project.workspace],
     });
   }
 }
