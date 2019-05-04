@@ -7,7 +7,10 @@
 //
 
 import { forwardRef, Component, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  AbstractControl, ControlValueAccessor, FormBuilder, FormGroup,
+  NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator, Validators,
+} from '@angular/forms';
 import { Workspace } from 'src/app/models/workspace';
 
 @Component({
@@ -20,9 +23,14 @@ import { Workspace } from 'src/app/models/workspace';
       useExisting: forwardRef(() => FormWorkspaceComponent),
       multi: true,
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => FormWorkspaceComponent),
+      multi: true,
+    },
   ],
 })
-export class FormWorkspaceComponent implements OnInit, ControlValueAccessor {
+export class FormWorkspaceComponent implements OnInit, ControlValueAccessor, Validator {
   /**
    * Form group for workspace.
    */
@@ -84,6 +92,48 @@ export class FormWorkspaceComponent implements OnInit, ControlValueAccessor {
    */
   setDisabledState?(isDisabled: boolean): void {
     isDisabled ? this.workspaceForm.disable() : this.workspaceForm.enable();
+  }
+
+  /**
+   * Validates the form content.
+   */
+  validate(c: AbstractControl): ValidationErrors | null {
+
+    let err: { [key: string]: boolean };
+
+    const valBuildCount = this.workspaceForm.get(['buildCount']);
+
+    if (valBuildCount.value && !valBuildCount.pristine) {
+      const countStr = (valBuildCount.value as string).trim();
+
+      if (countStr === '') {
+        return null;
+      }
+
+      const buildCount = parseInt(countStr, 10);
+      if (isNaN(buildCount)) {
+        err = { errNumber: true };
+
+        valBuildCount.setErrors(err);
+        return err;
+      }
+
+      if (buildCount < 1) {
+        err = { errRange: true };
+
+        valBuildCount.setErrors(err);
+        return err;
+      }
+
+      if (buildCount > this.maxBuilds) {
+        err = { errRange: true };
+
+        valBuildCount.setErrors(err);
+        return err;
+      }
+    }
+
+    return null;
   }
 
   /**
