@@ -8,6 +8,9 @@
         placeholder="To:"
         formControlName="to"></textarea>
       <mat-hint>Comma separated list of email addresses</mat-hint>
+      <mat-error
+        *ngIf="emailForm.controls.to.hasError('errAddress')"
+        >No recepient was defined.</mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -16,6 +19,9 @@
         placeholder="Cc:"
         formControlName="cc"></textarea>
       <mat-hint>Comma separated list of email addresses</mat-hint>
+      <mat-error
+        *ngIf="emailForm.controls.cc.hasError('errAddress')"
+        >No recepient was defined.</mat-error>
     </mat-form-field>
 
     <mat-form-field *ngIf="showBcc">
@@ -24,12 +30,18 @@
         placeholder="Bcc:"
         formControlName="bcc"></textarea>
       <mat-hint>Comma separated list of email addresses</mat-hint>
+      <mat-error
+        *ngIf="emailForm.controls.bcc.hasError('errAddress')"
+        >No recepient was defined.</mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <input matInput
         placeholder="Subject"
         formControlName="subject">
+      <mat-error
+        *ngIf="emailForm.controls.subject.hasError('errEmpty')"
+        >Subject can't be empty.</mat-error>
     </mat-form-field>
 
     <mat-form-field *ngIf="showHeader">
@@ -44,6 +56,9 @@
         rows="4"
         placeholder="Main body of email content"
         formControlName="body"></textarea>
+      <mat-error
+        *ngIf="emailForm.controls.body.hasError('errEmpty')"
+        >Body can't be empty.</mat-error>
     </mat-form-field>
 
     <mat-form-field *ngIf="showFooter">

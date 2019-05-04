@@ -7,7 +7,10 @@
 //
 
 import { forwardRef, Component, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  AbstractControl, ControlValueAccessor, FormBuilder, FormGroup,
+  NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator, Validators,
+} from '@angular/forms';
 import { EmailNotification } from 'src/app/models/notifications';
 
 @Component({
@@ -20,9 +23,14 @@ import { EmailNotification } from 'src/app/models/notifications';
       useExisting: forwardRef(() => FormEmailComponent),
       multi: true,
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => FormEmailComponent),
+      multi: true,
+    },
   ],
 })
-export class FormEmailComponent implements OnInit, ControlValueAccessor {
+export class FormEmailComponent implements OnInit, ControlValueAccessor, Validator {
   /**
    * Form group for email component.
    */
@@ -98,6 +106,75 @@ export class FormEmailComponent implements OnInit, ControlValueAccessor {
    */
   setDisabledState?(isDisabled: boolean): void {
     isDisabled ? this.emailForm.disable() : this.emailForm.enable();
+  }
+
+  /**
+   * Validates the form content.
+   */
+  validate(c: AbstractControl): ValidationErrors | null {
+    let err: { [key: string]: boolean };
+
+    const valTo = this.emailForm.get(['to']);
+    const valCc = this.emailForm.get(['cc']);
+    const valBcc = this.emailForm.get(['bcc']);
+
+    //
+    // Either of 'to', 'cc' or 'bcc' (if enabled), must be set
+    //
+    const strTo = (valTo.value as string).trim();
+    const strCc = (valCc.value as string).trim();
+    const strBcc = (valBcc.value as string).trim();
+
+    if (this.showBcc) {
+      if (!strTo && !strCc && !strBcc) {
+        err = { errAddress: true };
+
+        valTo.setErrors(err);
+        valCc.setErrors(err);
+        valBcc.setErrors(err);
+        return err;
+      }
+    } else {
+      if (!strTo && !strCc) {
+        err = { errAddress: true };
+
+        valTo.setErrors(err);
+        valCc.setErrors(err);
+        return err;
+      }
+    }
+
+    //
+    // Clear any previously set error(s).
+    //
+    valTo.setErrors(null);
+    valCc.setErrors(null);
+
+    if (this.showBcc) {
+      valBcc.setErrors(null);
+    }
+
+    // TODO: Validate as array of email addresses
+
+    const valSubject = this.emailForm.get(['subject']);
+
+    if (!(valSubject.value as string).trim()) {
+      err = { errEmpty: true };
+
+      valSubject.setErrors(err);
+      return err;
+    }
+
+    const valBody = this.emailForm.get(['body']);
+
+    if (!(valBody.value as string).trim()) {
+      err = { errEmpty: true };
+
+      valBody.setErrors(err);
+      return err;
+    }
+
+    return null;
   }
 
   /**
