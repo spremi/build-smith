@@ -1,3 +1,73 @@
-<p>
-  form-email works!
-</p>
+<div
+  [formGroup]="emailForm"
+  [spInert]="!edit">
+  <div class="email-content">
+    <mat-form-field>
+      <textarea matInput
+        rows="1"
+        placeholder="To:"
+        formControlName="to"></textarea>
+      <mat-hint>Comma separated list of email addresses</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput
+        rows="1"
+        placeholder="Cc:"
+        formControlName="cc"></textarea>
+      <mat-hint>Comma separated list of email addresses</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="showBcc">
+      <textarea matInput
+        rows="1"
+        placeholder="Bcc:"
+        formControlName="bcc"></textarea>
+      <mat-hint>Comma separated list of email addresses</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+        placeholder="Subject"
+        formControlName="subject">
+    </mat-form-field>
+
+    <mat-form-field *ngIf="showHeader">
+      <textarea matInput
+        rows="1"
+        placeholder="Header for email content (optional)"
+        formControlName="header"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput
+        rows="4"
+        placeholder="Main body of email content"
+        formControlName="body"></textarea>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="showFooter">
+      <textarea matInput
+        rows="1"
+        placeholder="Footer for email content (optional)"
+        formControlName="footer"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="email-flags">
+    <mat-checkbox
+      [checked]="showBcc"
+      (change)="showBcc = !showBcc"
+    >Show bcc?</mat-checkbox>
+
+    <mat-checkbox
+      [checked]="showHeader"
+      (change)="showHeader = !showHeader"
+    >Show email header?</mat-checkbox>
+
+    <mat-checkbox
+      [checked]="showFooter"
+      (change)="showFooter = !showFooter"
+    >Show email footer?</mat-checkbox>
+  </div>
+</div>
