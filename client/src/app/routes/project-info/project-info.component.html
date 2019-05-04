@@ -74,8 +74,13 @@
       <sp-form-step></sp-form-step>
     </mat-tab>
     <mat-tab label="NOTIFICATIONS">
-      <h3 class="mat-h3">EMAIL NOTIFICATIONS</h3>
-      <sp-form-email></sp-form-email>
+      <mat-checkbox
+        formControlName="isEmailNotify"
+        >Send email notification?</mat-checkbox>
+
+      <sp-form-email *ngIf="projectForm.controls.isEmailNotify.value"
+        formControlName="emailNotify"
+        [edit]="isEditing"></sp-form-email>
     </mat-tab>
   </mat-tab-group>
 </form>

@@ -86,7 +86,18 @@ export class ProjectInfoComponent implements OnInit {
       cleanAfter: false,
       buildCount: 0,
     },
-    notifications: null,
+    notifications: {
+      useEmail: true,
+      emailData: {
+        to: 'a@null.dev',
+        cc: 'b@null.dev',
+        bcc: 'c@null.dev',
+        subject: 'Build status',
+        header: null,
+        footer: null,
+        body: 'Placeholder for email template',
+      },
+    },
   };
 
   /**
@@ -140,6 +151,8 @@ export class ProjectInfoComponent implements OnInit {
       perms: cloneDeep(this.project.perms),
       triggers: cloneDeep(this.project.triggers),
       workspace: cloneDeep(this.project.workspace),
+      isEmailNotify: this.project.notifications.useEmail,
+      emailNotify: cloneDeep(this.project.notifications.emailData),
     });
 
     this.projectForm.markAsPristine();
@@ -164,6 +177,8 @@ export class ProjectInfoComponent implements OnInit {
       desc: [this.project.desc],
       triggers: [this.project.triggers],
       workspace: [this.project.workspace],
+      isEmailNotify: [this.project.notifications.useEmail],
+      emailNotify: [this.project.notifications.emailData],
     });
   }
 }
