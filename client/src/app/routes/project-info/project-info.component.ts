@@ -86,6 +86,7 @@ export class ProjectInfoComponent implements OnInit {
       cleanAfter: false,
       buildCount: 0,
     },
+    notifications: null,
   };
 
   /**

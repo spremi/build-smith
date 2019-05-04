@@ -6,6 +6,7 @@
 // Available under terms of the BSD-3-Clause license.
 //
 
+import { initEmailNotification, EmailNotification } from './notifications';
 import { ProjectRepo } from './repo';
 import { initTriggers, Triggers } from './triggers';
 import { initWorkspace, Workspace } from './workspace';
@@ -167,6 +168,25 @@ export const initProjectPermissions = (): ProjectPermissions => ({
 });
 
 /**
+ * Project notifications.
+ */
+export interface ProjectNotifications {
+  /** Notify via Email. */
+  useEmail: boolean;
+
+  /** Data related to email notifications. */
+  emailData: EmailNotification;
+}
+
+/**
+ * Initializer for interface 'ProjectNotifications'.
+ */
+export const initProjectNotifications = (): ProjectNotifications => ({
+  useEmail: false,
+  emailData: initEmailNotification(),
+});
+
+/**
  * Detailed information about a project.
  */
 export interface Project extends ProjectBrief {
@@ -181,6 +201,9 @@ export interface Project extends ProjectBrief {
 
   /** Workspace. */
   workspace: Workspace;
+
+  /** Notifications. */
+  notifications: ProjectNotifications;
 }
 
 /**
@@ -192,4 +215,5 @@ export const initProject = (): Project => ({
   perms: initProjectPermissions(),
   triggers: initTriggers(),
   workspace: initWorkspace(),
+  notifications: initProjectNotifications(),
 });
