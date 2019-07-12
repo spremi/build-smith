@@ -53,5 +53,20 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~3.2.2"
+  },
+  "keywords": [
+    "build",
+    "buildsmith",
+    "build-smith"
+  ],
+  "license": "BSD-3-Clause",
+  "author": {
+    "name": "Sanjeev Premi",
+    "email": "spremi@ymail.com",
+    "url": "https://github.com/spremi"
+  },
+  "homepage": "https://github.com/spremi/build-smith",
+  "bugs": {
+    "url": "https://github.com/spremi/build-smith/issues"
   }
 }
